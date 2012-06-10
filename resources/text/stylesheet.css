@@ -1,0 +1,40 @@
+/* --------- Pantin ---------- */
+
+QColorDialog { background: transparent; }
+
+Pantin--views--sceneView--GLView
+{
+	border: 0px;
+	background: #6f6f6f;
+	alternate-background-color: #313131;
+	color: rgba(255,255,255,128);
+}
+
+Pantin--views--sceneView--SidePanelsHolder > *
+{
+	background: #313131;
+	border: 1px solid #272727;
+	margin-bottom: 2px;
+	margin-left: 2px;
+	margin-right: 2px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+Pantin--views--sceneView--SidePanelsHolder > QLabel
+{
+	background: transparent;
+	padding: 2px;
+	margin-top: 2px;
+	margin-bottom: 0px;
+	border-bottom: 0px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	qproperty-alignment: AlignCenter;
+}
+
+Pantin--views--sceneView--ToolShelf QToolButton { max-height: 16px; max-width: 16px; }
+Pantin--views--sceneView--ToolShelf QToolButton:checked { background: #6f6f6f; }
+Pantin--views--sceneView--ToolShelf QToolButton:hover:!checked { background: #a9d9fe; }
