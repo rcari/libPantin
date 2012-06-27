@@ -66,6 +66,7 @@ using namespace Pantin::serialization;
 #include <QtCore/QtDebug>
 #include <QtCore/QSettings>
 #include <QtCore/QFile>
+#include <QtCore/QFileInfo>
 
 #include <QtGui/QApplication>
 #include <QtGui/QFileDialog>
@@ -161,6 +162,8 @@ kbool PantinEngine::existsSerializerWithName(const QString& name)
 
 void PantinEngine::LoadProject(const QFileInfo& fileInfo, QWidget* parent = K_NULL)
 {
+	qDebug() << "Pantin / Loading project @" << fileInfo.absoluteFilePath();
+
 	LoadInstance loadTasklet(fileInfo.absoluteFilePath());
 
 	// GUI remains responsive during serialization operation.
@@ -170,8 +173,11 @@ void PantinEngine::LoadProject(const QFileInfo& fileInfo, QWidget* parent = K_NU
 
 	if(!loadTasklet.loadedInstance())
 	{
+		qDebug() << "Pantin / Failed to load project";
 		return;
 	}
+
+	qDebug() << "Pantin / Successfully loaded project";
 
 	// Create an instances manager
 	PantinInstancesManager* manager = K_BLOCK_CREATE_INSTANCE( PantinInstancesManager );
@@ -352,6 +358,7 @@ void PantinEngine::loadLastOpenedProject()
 		QFileInfo fileInfo(settings.value(LAST_OPENED).toString());
 		if(fileInfo.exists())
 		{
+			qDebug() << "Pantin / Found last opened project @" << fileInfo.absoluteFilePath();
 			PantinEngine::LoadProject(fileInfo, _mainWindow);
 		}
 	}
