@@ -76,7 +76,8 @@ using namespace Pantin::serialization;
 
 PantinEngine::PantinEngine()
 :	_mainWindow(K_NULL),
-	_manager(K_NULL)
+	_manager(K_NULL),
+	_serializers(Block::SystemOwned)
 {
 	_Instance = this;
 	_serializers.blockName(tr("Serializers Library"));

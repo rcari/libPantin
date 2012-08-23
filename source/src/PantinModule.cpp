@@ -1,4 +1,3 @@
-
 /*
  * 	Copyright (c) 2010-2011, Romuald CARI
  *	All rights reserved.
@@ -27,44 +26,28 @@
  *
  */
 
-#include <tasklets/SaveInstance.hpp>
-using namespace Pantin::tasklets;
-using namespace Nigel::COLLADA;
-
 #include <PantinModule.hpp>
-#include <parallel/TaskletMacros.hpp>
-K_TASKLET_I( Pantin::tasklets::SaveInstance )
+using namespace Pantin;
+using namespace Kore::plugin;
 
-SaveInstance::SaveInstance(const DocumentInstance* instance, const QString& filePath, kbool autoDelete)
-:	Tasklet(autoDelete),
- 	_instance(instance),
- 	_filePath(filePath)
+K_MODULE_IMPL
+
+QString PantinModule::name() const
 {
+	return QLatin1String("libPantin");
 }
 
-void SaveInstance::run(Tasklet* tasklet) const
+QString PantinModule::version() const
 {
-	SaveInstance* saveTasklet = static_cast<SaveInstance*>(tasklet);
-
-	TaskletRunner::start(tasklet);
-
-	// Simply save the stuff...
-	if(DocumentInstance::SaveDocumentInstance(saveTasklet->_instance, saveTasklet->_filePath, saveTasklet))
-	{
-		TaskletRunner::complete(tasklet);
-	}
-	else
-	{
-		TaskletRunner::fail(tasklet);
-	}
+	return QLatin1String(_PANTIN_VERSION);
 }
 
-kbool SaveInstance::continueOperation()
+QString PantinModule::author() const
 {
-	return keepRunning();
+	return QLatin1String("Moving Pixels Labs");
 }
 
-void SaveInstance::progress(kuint64 progress, kuint64 total)
+QString PantinModule::url() const
 {
-	runnerProgress(progress, total);
+	return QLatin1String("http://mp-labs.net");
 }

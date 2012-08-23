@@ -29,6 +29,8 @@
 #include <views/sceneView/tools/Tool.hpp>
 using namespace Pantin::views::sceneView;
 
+#include <PantinModule.hpp>
+
 #define K_BLOCK_TYPE Pantin::views::sceneView::Tool
 #include <BlockMacros.hpp>
 K_BLOCK_BEGIN

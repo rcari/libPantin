@@ -31,6 +31,8 @@ using namespace Pantin::serialization;
 
 #include <QtCore/QStringList>
 
+#include <PantinModule.hpp>
+
 #define K_BLOCK_TYPE Pantin::serialization::Serializer
 #include <BlockMacros.hpp>
 K_BLOCK_BEGIN

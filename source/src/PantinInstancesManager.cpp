@@ -47,6 +47,8 @@ using namespace GLr::rendering;
 #include <QtCore/QThread>
 #include <QtGui/QApplication>
 
+#include <PantinModule.hpp>
+
 #define K_BLOCK_TYPE Pantin::PantinInstancesManager
 #include <BlockMacros.hpp>
 K_BLOCK_BEGIN

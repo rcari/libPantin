@@ -33,6 +33,7 @@ using namespace Pantin;
 #include <COLLADA/DocumentInstance.hpp>
 using namespace Nigel::COLLADA;
 
+#include <PantinModule.hpp>
 #include <parallel/TaskletMacros.hpp>
 K_TASKLET_I( Pantin::tasklets::SaveAllInstances )
 

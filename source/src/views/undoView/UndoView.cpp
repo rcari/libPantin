@@ -41,6 +41,8 @@ using namespace Pantin;
 using namespace Kore::data;
 using namespace Kore;
 
+#include <PantinModule.hpp>
+
 #define K_BLOCK_TYPE Pantin::views::undoView::UndoView
 #include <BlockMacros.hpp>
 K_BLOCK_BEGIN

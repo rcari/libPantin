@@ -26,6 +26,7 @@ SET (
 	src/PantinApplication.cpp
 	src/PantinEngine.cpp
 	src/PantinInstancesManager.cpp
+	src/PantinModule.cpp
 )
 
 INCLUDE ( src/actions/sources.cmake )
@@ -41,6 +42,7 @@ SET (
 	inc/PantinApplication.hpp
 	inc/PantinBlockTypes.hpp
 	inc/PantinExport.hpp
+	inc/PantinModule.hpp
 )
 
 SET (

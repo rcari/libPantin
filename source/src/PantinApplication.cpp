@@ -43,6 +43,8 @@ using namespace Gooey::windows;
 #include <QtCore/QTextStream>
 #include <QtGui/QApplication>
 
+#include <PantinModule.hpp>
+
 PantinApplication::PantinApplication(QSplashScreen& splash) {
 
 	qDebug("Pantin / Loading PantinApplication");
@@ -51,6 +53,9 @@ PantinApplication::PantinApplication(QSplashScreen& splash) {
 	K_ASSERT( _Instance == K_NULL )
 
 	_Instance = this;
+
+	// Load module
+	PantinModule::PrivateInstance()->load();
 
 	// Apply Pantin stylesheet
 	{

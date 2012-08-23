@@ -32,6 +32,8 @@ using namespace Nigel::COLLADA;
 
 #include <QtCore/QCoreApplication>
 
+#include <PantinModule.hpp>
+
 #include <parallel/TaskletMacros.hpp>
 K_TASKLET_I( Pantin::tasklets::LoadInstance )
 

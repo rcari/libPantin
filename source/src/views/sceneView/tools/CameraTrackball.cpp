@@ -37,6 +37,8 @@ using namespace Pantin::views::sceneView;
 #include <math/Math.hpp>
 using namespace Nigel::math;
 
+#include <PantinModule.hpp>
+
 #define K_BLOCK_TYPE Pantin::views::sceneView::CameraTrackball
 #include <BlockMacros.hpp>
 K_BLOCK_BEGIN

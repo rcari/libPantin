@@ -33,6 +33,8 @@ using namespace Pantin::views::sceneView;
 #include <widgets/GroupForm.hpp>
 using namespace Gooey::widgets;
 
+#include <PantinModule.hpp>
+
 #define K_BLOCK_TYPE Pantin::views::sceneView::ToolBox
 #include <BlockMacros.hpp>
 K_BLOCK_BEGIN

@@ -34,6 +34,8 @@ using namespace Gooey::views;
 #include <KoreApplication.hpp>
 using namespace Kore::data;
 
+#include <PantinModule.hpp>
+
 #define K_BLOCK_TYPE Pantin::views::elementEditor::ElementEditor
 #include <BlockMacros.hpp>
 K_BLOCK_BEGIN

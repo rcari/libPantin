@@ -1,6 +1,5 @@
-
 /*
- * 	Copyright (c) 2010-2011, Romuald CARI
+ * 	Copyright (c) 2010-2014, Romuald CARI
  *	All rights reserved.
  *
  *	Redistribution and use in source and binary forms, with or without
@@ -10,14 +9,14 @@
  *		* Redistributions in binary form must reproduce the above copyright
  *		  notice, this list of conditions and the following disclaimer in the
  *		  documentation and/or other materials provided with the distribution.
- *		* Neither the name of the <organization> nor the
+ *		* Neither the name of the Moving Pixels Labs nor the
  *		  names of its contributors may be used to endorse or promote products
  *		  derived from this software without specific prior written permission.
  *
  *	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  *	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  *	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- *	DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ *	DISCLAIMED. IN NO EVENT SHALL Romuald CARI BE LIABLE FOR ANY
  *	DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
  *	(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
  *	LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
@@ -27,44 +26,28 @@
  *
  */
 
-#include <tasklets/SaveInstance.hpp>
-using namespace Pantin::tasklets;
-using namespace Nigel::COLLADA;
+#pragma once
 
-#include <PantinModule.hpp>
-#include <parallel/TaskletMacros.hpp>
-K_TASKLET_I( Pantin::tasklets::SaveInstance )
+#include <plugin/Module.hpp>
 
-SaveInstance::SaveInstance(const DocumentInstance* instance, const QString& filePath, kbool autoDelete)
-:	Tasklet(autoDelete),
- 	_instance(instance),
- 	_filePath(filePath)
+namespace Pantin {
+
+class PantinApplication;
+
+class PantinModule : public Kore::plugin::Module
 {
+	K_MODULE
+
+	friend class PantinApplication;
+
+public:
+	virtual QString name() const;
+	virtual QString author() const;
+	virtual QString url() const;
+	virtual QString version() const;
+};
+
 }
 
-void SaveInstance::run(Tasklet* tasklet) const
-{
-	SaveInstance* saveTasklet = static_cast<SaveInstance*>(tasklet);
-
-	TaskletRunner::start(tasklet);
-
-	// Simply save the stuff...
-	if(DocumentInstance::SaveDocumentInstance(saveTasklet->_instance, saveTasklet->_filePath, saveTasklet))
-	{
-		TaskletRunner::complete(tasklet);
-	}
-	else
-	{
-		TaskletRunner::fail(tasklet);
-	}
-}
-
-kbool SaveInstance::continueOperation()
-{
-	return keepRunning();
-}
-
-void SaveInstance::progress(kuint64 progress, kuint64 total)
-{
-	runnerProgress(progress, total);
-}
+#define K_MODULE_TYPE Pantin::PantinModule
+#include <ModuleMacros.hpp>

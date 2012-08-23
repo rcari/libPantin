@@ -35,6 +35,8 @@ using namespace Pantin::serialization;
 #include <windows/TaskletProgressDialog.hpp>
 using namespace Gooey::windows;
 
+#include <PantinModule.hpp>
+
 #define K_BLOCK_TYPE Pantin::serialization::ThreeDS::ThreeDSSerializer
 #include <BlockMacros.hpp>
 K_BLOCK_BEGIN

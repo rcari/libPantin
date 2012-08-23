@@ -45,6 +45,8 @@ using namespace Nigel::scene;
 #include <data/MetaBlock.hpp>
 using namespace Kore::data;
 
+#include <PantinModule.hpp>
+
 #define K_BLOCK_TYPE Pantin::views::sceneView::SceneView
 #include <BlockMacros.hpp>
 K_BLOCK_BEGIN

@@ -32,6 +32,8 @@ using namespace Pantin::views::sceneView;
 
 #include <QtGui/QGraphicsSceneWheelEvent>
 
+#include <PantinModule.hpp>
+
 #define K_BLOCK_TYPE Pantin::views::sceneView::CameraControl
 #include <BlockMacros.hpp>
 K_BLOCK_BEGIN
