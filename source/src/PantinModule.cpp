@@ -51,3 +51,4 @@ QString PantinModule::url() const
 {
 	return QLatin1String("http://mp-labs.net");
 }
+
