@@ -48,7 +48,7 @@ using namespace Kore::data;
 #include <PantinModule.hpp>
 
 #define K_BLOCK_TYPE Pantin::views::sceneView::SceneView
-#include <BlockMacros.hpp>
+#include <data/BlockMacros.hpp>
 K_BLOCK_BEGIN
 	K_BLOCK_ICON("pantin/images/icons/sceneView.png")
 	K_BLOCK_ALLOCABLE

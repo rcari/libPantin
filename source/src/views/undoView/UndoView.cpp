@@ -44,7 +44,7 @@ using namespace Kore;
 #include <PantinModule.hpp>
 
 #define K_BLOCK_TYPE Pantin::views::undoView::UndoView
-#include <BlockMacros.hpp>
+#include <data/BlockMacros.hpp>
 K_BLOCK_BEGIN
 	K_BLOCK_ICON("pantin/images/icons/undoView.png")
 	K_BLOCK_ALLOCABLE

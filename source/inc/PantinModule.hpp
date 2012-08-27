@@ -50,4 +50,4 @@ public:
 }
 
 #define K_MODULE_TYPE Pantin::PantinModule
-#include <ModuleMacros.hpp>
+#include <plugin/ModuleMacros.hpp>

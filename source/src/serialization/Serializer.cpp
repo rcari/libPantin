@@ -34,7 +34,7 @@ using namespace Pantin::serialization;
 #include <PantinModule.hpp>
 
 #define K_BLOCK_TYPE Pantin::serialization::Serializer
-#include <BlockMacros.hpp>
+#include <data/BlockMacros.hpp>
 K_BLOCK_BEGIN
 	K_BLOCK_ICON_DEFAULT
 	K_BLOCK_VIRTUAL
