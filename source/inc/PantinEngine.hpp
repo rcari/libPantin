@@ -121,4 +121,4 @@ private:
 
 }
 
-#define P_SERIALIZER_I( serializer ) kbool serializer::__P_Registered = Pantin::PantinEngine::RegisterSerializer( serializer::StaticMetaBlock()->createBlockT<Pantin::serialization::Serializer>() );
+#define P_SERIALIZER_I( serializer ) kbool serializer::__P_Registered = Pantin::PantinEngine::RegisterSerializer( serializer::StaticMetaBlock()->instantiateT<Pantin::serialization::Serializer>() );
