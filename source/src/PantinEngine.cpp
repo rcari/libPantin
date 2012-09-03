@@ -77,6 +77,9 @@ using namespace Pantin::serialization;
 PantinEngine::PantinEngine()
 :	_mainWindow(K_NULL),
 	_manager(K_NULL),
+	_projectMenu(K_NULL),
+	_importMenu(K_NULL),
+	_exportMenu(K_NULL),
 	_serializers(Block::SystemOwned)
 {
 	_Instance = this;
