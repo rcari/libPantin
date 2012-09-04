@@ -69,8 +69,12 @@ using namespace Pantin::serialization;
 #include <QtCore/QFileInfo>
 
 #include <QtGui/QApplication>
+#include <QtGui/QComboBox>
+#include <QtGui/QDockWidget>
 #include <QtGui/QFileDialog>
+#include <QtGui/QLabel>
 #include <QtGui/QMessageBox>
+#include <QtGui/QToolBar>
 
 #define LAST_OPENED		"LAST_OPENED"
 
@@ -240,6 +244,32 @@ void PantinEngine::createMainWindow()
 
 	//Export menu
 	action = _projectMenu->addAction(tr("Export"));
+
+	_mainWindow->setCentralWidget(new QLabel(tr("Central Widget")));
+
+	_mainWindow->addDockWidget(Qt::LeftDockWidgetArea, new QDockWidget(tr("Hello there 1 !")));
+	_mainWindow->addDockWidget(Qt::RightDockWidgetArea, new QDockWidget(tr("Hello there 2 !")));
+	_mainWindow->addDockWidget(Qt::TopDockWidgetArea, new QDockWidget(tr("Hello there 3 !")));
+	_mainWindow->addDockWidget(Qt::BottomDockWidgetArea, new QDockWidget(tr("Hello there 4 !")));
+
+	QToolBar* toolBar = new QToolBar;
+	toolBar->setFloatable(false);
+	toolBar->setMovable(false);
+	toolBar->setAllowedAreas(Qt::TopToolBarArea);
+	QComboBox* combo = new QComboBox;
+	combo->setMinimumWidth(200);
+	combo->addItem("Bla");
+	combo->addItem("Blo");
+	combo->addItem("Blu");
+	toolBar->addWidget(combo);
+	_mainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
+
+	toolBar = new QToolBar;
+	toolBar->addAction(tr("Action 6"));
+	toolBar->addAction(tr("Action 7"));
+	toolBar->addAction(tr("Action 8"));
+	toolBar->addAction(tr("Action 9"));
+	_mainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
 }
 
 void PantinEngine::registerInstancesManager(PantinInstancesManager* manager)

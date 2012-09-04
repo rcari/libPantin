@@ -30,7 +30,7 @@
 
 #include <PantinExport.hpp>
 
-#include <data/Library.hpp>
+#include <data/LibraryT.hpp>
 #include <windows/MainWindow.hpp>
 #include <PantinInstancesManager.hpp>
 

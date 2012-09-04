@@ -34,7 +34,7 @@ INCLUDE ( src/commands/sources.cmake )
 INCLUDE ( src/dialogs/sources.cmake )
 INCLUDE ( src/serialization/sources.cmake )
 INCLUDE ( src/tasklets/sources.cmake )
-INCLUDE ( src/views/sources.cmake )
+#INCLUDE ( src/views/sources.cmake )
 
 SET (
 	Pantin_HDRS
@@ -57,7 +57,7 @@ INCLUDE ( inc/commands/headers.cmake )
 INCLUDE ( inc/dialogs/headers.cmake )
 INCLUDE ( inc/serialization/headers.cmake )
 INCLUDE ( inc/tasklets/headers.cmake )
-INCLUDE ( inc/views/headers.cmake )
+#INCLUDE ( inc/views/headers.cmake )
 
 ### ------------- MOC --------------
 QT4_WRAP_CPP( Pantin_MOC_SRCS ${Pantin_MOC_HDRS} )
