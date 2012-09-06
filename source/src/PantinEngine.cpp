@@ -248,28 +248,7 @@ void PantinEngine::createMainWindow()
 	_mainWindow->setCentralWidget(new QLabel(tr("Central Widget")));
 
 	_mainWindow->addDockWidget(Qt::LeftDockWidgetArea, new QDockWidget(tr("Hello there 1 !")));
-	_mainWindow->addDockWidget(Qt::RightDockWidgetArea, new QDockWidget(tr("Hello there 2 !")));
-	_mainWindow->addDockWidget(Qt::TopDockWidgetArea, new QDockWidget(tr("Hello there 3 !")));
-	_mainWindow->addDockWidget(Qt::BottomDockWidgetArea, new QDockWidget(tr("Hello there 4 !")));
-
-	QToolBar* toolBar = new QToolBar;
-	toolBar->setFloatable(false);
-	toolBar->setMovable(false);
-	toolBar->setAllowedAreas(Qt::TopToolBarArea);
-	QComboBox* combo = new QComboBox;
-	combo->setMinimumWidth(200);
-	combo->addItem("Bla");
-	combo->addItem("Blo");
-	combo->addItem("Blu");
-	toolBar->addWidget(combo);
-	_mainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
-
-	toolBar = new QToolBar;
-	toolBar->addAction(tr("Action 6"));
-	toolBar->addAction(tr("Action 7"));
-	toolBar->addAction(tr("Action 8"));
-	toolBar->addAction(tr("Action 9"));
-	_mainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
+	_mainWindow->addDockWidget(Qt::LeftDockWidgetArea, new QDockWidget(tr("Hello there 2 !")));
 }
 
 void PantinEngine::registerInstancesManager(PantinInstancesManager* manager)
