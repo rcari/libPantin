@@ -44,7 +44,9 @@ using namespace Pantin::tasklets;
 using namespace Gooey;
 
 #include <windows/MainMenu.hpp>
+#include <windows/MainWindow.hpp>
 #include <windows/TaskletProgressDialog.hpp>
+#include <windows/View.hpp>
 using namespace Gooey::windows;
 
 #include <KoreEngine.hpp>
@@ -74,6 +76,7 @@ using namespace Pantin::serialization;
 #include <QtGui/QFileDialog>
 #include <QtGui/QLabel>
 #include <QtGui/QMessageBox>
+#include <QtGui/QPixmap>
 #include <QtGui/QToolBar>
 
 #define LAST_OPENED		"LAST_OPENED"
@@ -245,10 +248,13 @@ void PantinEngine::createMainWindow()
 	//Export menu
 	action = _projectMenu->addAction(tr("Export"));
 
-	_mainWindow->setCentralWidget(new QLabel(tr("Central Widget")));
+	QLabel* centralWidget = new QLabel;
+	centralWidget->setPixmap(QPixmap(":/pantin-studio/images/splash.png", "PNG"));
+	centralWidget->setAlignment(Qt::AlignCenter);
+	_mainWindow->setCentralWidget(centralWidget);
 
-	_mainWindow->addDockWidget(Qt::LeftDockWidgetArea, new QDockWidget(tr("Hello there 1 !")));
-	_mainWindow->addDockWidget(Qt::LeftDockWidgetArea, new QDockWidget(tr("Hello there 2 !")));
+	_mainWindow->addDockWidget(Qt::LeftDockWidgetArea, new View(tr("Hello there 1 !")));
+	_mainWindow->addDockWidget(Qt::LeftDockWidgetArea, new View(tr("Hello there 2 !")));
 }
 
 void PantinEngine::registerInstancesManager(PantinInstancesManager* manager)
