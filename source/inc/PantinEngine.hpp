@@ -88,6 +88,7 @@ private:
 	void saveLastOpenedProject();
 
 private slots:
+	void updateStyleSheet();
 	void quitRequest();
 	void error(QString error, QString details);
 

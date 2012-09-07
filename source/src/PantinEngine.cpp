@@ -77,6 +77,7 @@ using namespace Pantin::serialization;
 #include <QtGui/QLabel>
 #include <QtGui/QMessageBox>
 #include <QtGui/QPixmap>
+#include <QtGui/QTextEdit>
 #include <QtGui/QToolBar>
 
 #define LAST_OPENED		"LAST_OPENED"
@@ -248,15 +249,23 @@ void PantinEngine::createMainWindow()
 	//Export menu
 	action = _projectMenu->addAction(tr("Export"));
 
-	QLabel* centralWidget = new QLabel;
+	/*QLabel* centralWidget = new QLabel;
 	centralWidget->setPixmap(QPixmap(":/pantin-studio/images/splash.png", "PNG"));
 	centralWidget->setAlignment(Qt::AlignCenter);
-	_mainWindow->setCentralWidget(centralWidget);
+	_mainWindow->setCentralWidget(centralWidget);*/
 
-	_mainWindow->addToolBar(Qt::TopToolBarArea, new QToolBar);
+	QTextEdit* edit = new QTextEdit;
+	edit->setText(qApp->styleSheet());
+	connect(edit, SIGNAL(textChanged()), SLOT(updateStyleSheet()));
+	_mainWindow->setCentralWidget(edit);
 
 	_mainWindow->addDockWidget(Qt::LeftDockWidgetArea, new View(tr("Hello there 1 !")));
 	_mainWindow->addDockWidget(Qt::LeftDockWidgetArea, new View(tr("Hello there 2 !")));
+}
+
+void PantinEngine::updateStyleSheet()
+{
+	qApp->setStyleSheet(static_cast<QTextEdit*>(sender())->toPlainText());
 }
 
 void PantinEngine::registerInstancesManager(PantinInstancesManager* manager)
