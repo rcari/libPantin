@@ -253,6 +253,8 @@ void PantinEngine::createMainWindow()
 	centralWidget->setAlignment(Qt::AlignCenter);
 	_mainWindow->setCentralWidget(centralWidget);
 
+	_mainWindow->addToolBar(Qt::TopToolBarArea, new QToolBar);
+
 	_mainWindow->addDockWidget(Qt::LeftDockWidgetArea, new View(tr("Hello there 1 !")));
 	_mainWindow->addDockWidget(Qt::LeftDockWidgetArea, new View(tr("Hello there 2 !")));
 }
