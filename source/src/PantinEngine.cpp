@@ -259,8 +259,8 @@ void PantinEngine::createMainWindow()
 	connect(edit, SIGNAL(textChanged()), SLOT(updateStyleSheet()));
 	_mainWindow->setCentralWidget(edit);
 
-	_mainWindow->addDockWidget(Qt::LeftDockWidgetArea, new View(tr("Hello there 1 !")));
-	_mainWindow->addDockWidget(Qt::LeftDockWidgetArea, new View(tr("Hello there 2 !")));
+	_mainWindow->addDockWidget(Qt::LeftDockWidgetArea, new View);
+	_mainWindow->addDockWidget(Qt::LeftDockWidgetArea, new View);
 }
 
 void PantinEngine::updateStyleSheet()
