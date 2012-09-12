@@ -65,6 +65,8 @@ using namespace Nigel::COLLADA;
 #include <serialization/FileImporterWizard.hpp>
 using namespace Pantin::serialization;
 
+#include <perspectives/Project.hpp>
+
 #include <QtCore/QtDebug>
 #include <QtCore/QSettings>
 #include <QtCore/QFile>
@@ -249,18 +251,9 @@ void PantinEngine::createMainWindow()
 	//Export menu
 	action = _projectMenu->addAction(tr("Export"));
 
-	/*QLabel* centralWidget = new QLabel;
-	centralWidget->setPixmap(QPixmap(":/pantin-studio/images/splash.png", "PNG"));
-	centralWidget->setAlignment(Qt::AlignCenter);
-	_mainWindow->setCentralWidget(centralWidget);*/
-
-	QTextEdit* edit = new QTextEdit;
-	edit->setText(qApp->styleSheet());
-	connect(edit, SIGNAL(textChanged()), SLOT(updateStyleSheet()));
-	_mainWindow->setCentralWidget(edit);
-
-	_mainWindow->addDockWidget(Qt::LeftDockWidgetArea, new View);
-	_mainWindow->addDockWidget(Qt::LeftDockWidgetArea, new View);
+	Gooey::windows::Perspective* p = K_BLOCK_CREATE_INSTANCE(Pantin::perspectives::Project);
+	addBlock(p);
+	_mainWindow->addPerspective(p);
 }
 
 void PantinEngine::updateStyleSheet()
