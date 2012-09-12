@@ -1,6 +1,8 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource prefix="/pantin">
 	<file>images/icons/3ds.png</file>
+	<file>images/icons/nigel.png</file>
+	<file>images/icons/perspective.modelling.png</file>
 	<file>images/icons/sceneView.png</file>
 	<file>images/icons/sceneView-tool.png</file>
 	<file>images/icons/sceneView-toolBox.png</file>

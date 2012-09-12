@@ -34,13 +34,13 @@
 
 namespace Pantin { namespace perspectives {
 
-class PantinExport Modeling : public Gooey::windows::Perspective
+class PantinExport Modelling : public Gooey::windows::Perspective
 {
 	Q_OBJECT
 	K_BLOCK
 
 private:
-	Modeling();
+	Modelling();
 
 public:
 	virtual void resetLayout();

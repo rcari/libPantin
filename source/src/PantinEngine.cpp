@@ -66,6 +66,7 @@ using namespace Nigel::COLLADA;
 using namespace Pantin::serialization;
 
 #include <perspectives/Project.hpp>
+#include <perspectives/Modelling.hpp>
 
 #include <QtCore/QtDebug>
 #include <QtCore/QSettings>
@@ -90,11 +91,15 @@ PantinEngine::PantinEngine()
 	_projectMenu(K_NULL),
 	_importMenu(K_NULL),
 	_exportMenu(K_NULL),
-	_serializers(Block::SystemOwned)
+	_serializers(Block::SystemOwned),
+	_perspectives(Block::SystemOwned)
 {
 	_Instance = this;
 	_serializers.blockName(tr("Serializers Library"));
 	addBlock(&_serializers);
+
+	_perspectives.blockName(tr("Perspectives"));
+	addBlock(&_perspectives);
 
 	addFlag(Block::System);
 
@@ -204,7 +209,7 @@ void PantinEngine::LoadProject(const QFileInfo& fileInfo, QWidget* parent = K_NU
 void PantinEngine::createMainWindow()
 {
 	_mainWindow = new Gooey::windows::MainWindow;
-	_mainWindow->setWindowIcon(QIcon(":/pantin-studio/images/icons/nigel.png"));
+	_mainWindow->setWindowIcon(QIcon(":/pantin/images/icons/nigel.png"));
 
 	MainMenu* mainMenu = _mainWindow->mainMenu();
 
@@ -251,8 +256,14 @@ void PantinEngine::createMainWindow()
 	//Export menu
 	action = _projectMenu->addAction(tr("Export"));
 
+	// Add the perspectives...
 	Gooey::windows::Perspective* p = K_BLOCK_CREATE_INSTANCE(Pantin::perspectives::Project);
-	addBlock(p);
+	_perspectives.addBlock(p);
+	_mainWindow->addPerspective(p);
+	p->activate();
+
+	p = K_BLOCK_CREATE_INSTANCE(Pantin::perspectives::Modelling);
+	_perspectives.addBlock(p);
 	_mainWindow->addPerspective(p);
 }
 

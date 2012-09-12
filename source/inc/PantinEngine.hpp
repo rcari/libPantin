@@ -32,6 +32,7 @@
 
 #include <data/LibraryT.hpp>
 #include <windows/MainWindow.hpp>
+#include <windows/Perspective.hpp>
 #include <PantinInstancesManager.hpp>
 
 #include <rendering/Renderer.hpp>
@@ -113,6 +114,7 @@ private:
 	QMenu* _exportMenu;
 
 	Kore::data::LibraryT<Pantin::serialization::Serializer> _serializers;
+	Kore::data::LibraryT<Gooey::windows::Perspective> _perspectives;
 
 public:
 	static PantinEngine* Instance();

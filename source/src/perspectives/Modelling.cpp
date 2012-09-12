@@ -26,15 +26,15 @@
  *
  */
 
-#include <perspectives/Project.hpp>
+#include <perspectives/Modelling.hpp>
 using namespace Pantin::perspectives;
 
 #include <PantinModule.hpp>
 
-#define K_BLOCK_TYPE Pantin::perspectives::Project
+#define K_BLOCK_TYPE Pantin::perspectives::Modelling
 #include <data/BlockMacros.hpp>
 K_BLOCK_BEGIN
-K_BLOCK_ICON(":/pantin/images/icons/nigel.png")
+K_BLOCK_ICON(":/pantin/images/icons/perspective.modelling.png")
 	K_BLOCK_ALLOCABLE
 	K_BLOCK_PROPERTY_DEFAULT
 K_BLOCK_END
@@ -44,19 +44,18 @@ K_BLOCK_END
 #include <PantinEngine.hpp>
 using namespace Pantin;
 
-
 #include <QtGui/QLabel>
 
-Project::Project()
+Modelling::Modelling()
 {
-	QLabel* l = new QLabel("Projects...");
+	QLabel* l = new QLabel("Modelling");
 	l->setAlignment(Qt::AlignCenter);
 	setMainWidget(l);
-	blockName(tr("Projects"));
-	activateAction()->setText(tr("Projects"));
+	blockName(tr("Modelling"));
+	activateAction()->setText(tr("Modelling"));
 }
 
-void Project::resetLayout()
+void Modelling::resetLayout()
 {
-	// Do nothing: no views!!
+	// TODO !
 }
