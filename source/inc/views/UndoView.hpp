@@ -26,41 +26,28 @@
  *
  */
 
-#include <perspectives/Modelling.hpp>
-using namespace Pantin::perspectives;
+#pragma once
 
-#include <PantinModule.hpp>
+#include <windows/View.hpp>
 
-#define K_BLOCK_TYPE Pantin::perspectives::Modelling
-#include <data/BlockMacros.hpp>
-K_BLOCK_BEGIN
-K_BLOCK_ICON(":/pantin/images/icons/perspective.modelling.png")
-	K_BLOCK_ALLOCABLE
-	K_BLOCK_PROPERTY_DEFAULT
-K_BLOCK_END
+#include <QtGui/QComboBox>
+#include <QtGui/QUndoView>
 
-#include <views/UndoView.hpp>
-using namespace Gooey::windows;
+namespace Pantin { namespace views {
 
-#include <PantinApplication.hpp>
-#include <PantinEngine.hpp>
-using namespace Pantin;
-
-#include <QtGui/QLabel>
-
-Modelling::Modelling()
+class UndoView : public Gooey::windows::View
 {
-	QLabel* l = new QLabel("Modelling");
-	l->setAlignment(Qt::AlignCenter);
-	setMainWidget(l);
-	blockName(tr("Modelling"));
-	activateAction()->setText(tr("Modelling"));
-	addViewType(tr("Undo View"), QIcon(), &Pantin::views::UndoView::staticMetaObject);
-}
+	Q_OBJECT
 
-void Modelling::resetLayout()
-{
-	View* v = new Pantin::views::UndoView;
-	setViewPerspective(v);
-	window()->addView(v);
-}
+public:
+	Q_INVOKABLE UndoView();
+
+private slots:
+	void projectComboIndexChanged(int);
+
+private:
+	QComboBox* _projectCombo;
+	QUndoView* _undoView;
+};
+
+}}

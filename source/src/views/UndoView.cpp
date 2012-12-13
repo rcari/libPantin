@@ -26,41 +26,62 @@
  *
  */
 
-#include <perspectives/Modelling.hpp>
-using namespace Pantin::perspectives;
-
-#include <PantinModule.hpp>
-
-#define K_BLOCK_TYPE Pantin::perspectives::Modelling
-#include <data/BlockMacros.hpp>
-K_BLOCK_BEGIN
-K_BLOCK_ICON(":/pantin/images/icons/perspective.modelling.png")
-	K_BLOCK_ALLOCABLE
-	K_BLOCK_PROPERTY_DEFAULT
-K_BLOCK_END
-
 #include <views/UndoView.hpp>
+using namespace Pantin::views;
+
+#include <common/LibraryFilterProxyModel.hpp>
+#include <common/LibraryListModel.hpp>
+#include <common/PackedVBoxLayout.hpp>
+using namespace Gooey::common;
 using namespace Gooey::windows;
 
-#include <PantinApplication.hpp>
 #include <PantinEngine.hpp>
 using namespace Pantin;
 
-#include <QtGui/QLabel>
+#include <KoreApplication.hpp>
+using namespace Kore;
 
-Modelling::Modelling()
+#include <QtGui/QUndoView>
+#include <QtGui/QVBoxLayout>
+
+UndoView::UndoView()
 {
-	QLabel* l = new QLabel("Modelling");
-	l->setAlignment(Qt::AlignCenter);
-	setMainWidget(l);
-	blockName(tr("Modelling"));
-	activateAction()->setText(tr("Modelling"));
-	addViewType(tr("Undo View"), QIcon(), &Pantin::views::UndoView::staticMetaObject);
+	setWindowTitle(tr("Undo View"));
+
+	PackedVBoxLayout* vLayout = new PackedVBoxLayout;
+
+	_projectCombo = new QComboBox;
+	_projectCombo->setSizeAdjustPolicy(QComboBox::AdjustToContents);
+	connect(_projectCombo, SIGNAL(currentIndexChanged(int)), SLOT(projectComboIndexChanged(int)));
+	vLayout->addWidget(_projectCombo, 0);
+
+	LibraryListModel* model = new LibraryListModel(KoreApplication::Instance()->dataLibrary(), _projectCombo); // For proper deletion by Qt
+	LibraryFilterProxyModel* proxy = new LibraryFilterProxyModel(model); // For proper deletion by Qt
+	proxy->setSourceModel(model);
+	proxy->addClassType<PantinInstancesManager>();
+	_projectCombo->setModel(proxy);
+
+	_undoView = new QUndoView;
+	vLayout->addWidget(_undoView, 1);
+
+	QWidget* w = new QWidget;
+	w->setLayout(vLayout);
+
+	setWidget(w);
 }
 
-void Modelling::resetLayout()
+void UndoView::projectComboIndexChanged(int index)
 {
-	View* v = new Pantin::views::UndoView;
-	setViewPerspective(v);
-	window()->addView(v);
+	/*LibraryFilterProxyModel* proxy = static_cast<LibraryFilterProxyModel*>(_projectCombo->model());
+	QModelIndex proxyIndex = proxy->index(index, 0);
+	QModelIndex originalIndex = proxy->mapToSource(proxyIndex);
+
+	if(!originalIndex.isValid())
+	{
+		return;
+	}
+
+	Block* block = static_cast<LibraryListModel*>(proxy->sourceModel())->block(originalIndex);
+	K_ASSERT( block->fastInherits<PantinInstancesManager>() )
+	viewWidget<QUndoView>()->setGroup(static_cast<PantinInstancesManager*>(block)->undoGroup());*/
 }
